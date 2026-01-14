@@ -1,1 +1,1 @@
-console.log('CDN file structure');
+console.log('CDN file structure updated');
