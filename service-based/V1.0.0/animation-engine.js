@@ -1,40 +1,48 @@
-document.fonts.ready.then(() => {
-ScrollSmoother.create({
-  wrapper: "#smooth-wrapper",
-  content: "#smooth-content",
-  smooth: 1.2,
-  effects: true
-});
-const revealTextSection = document.querySelector('[text-reveal-on-scroll]');
-if(revealTextSection){
-  const revealTextValue = revealTextSection.getAttribute("text-reveal-on-scroll");
-  const revealContentAll = revealTextSection.querySelectorAll('[reveal-content]');
-  revealContentAll.forEach(el => {
-    const split = new SplitText(el, {
-      type: "lines",
-      linesClass: "line"
-    });
-    const lines = split.lines;
-    let activeIndex = -1;
-    ScrollTrigger.create({
-      trigger: el,
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true,
-      onUpdate(self) {
-        const progress = self.progress;
-        const index = Math.min(
-          lines.length - 1,
-          Math.floor(progress * lines.length)
-        );
-        if (index !== activeIndex) {
-          activeIndex = index;
-          lines.forEach((line, i) => {
-            line.classList.toggle("is-active", i === index);
-          });
-        }
+document.addEventListener("DOMContentLoaded", () => {
+  ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1.2,
+    effects: true
+  });
+  const animatedSection = document.querySelectorAll('[data-sda="true"]');
+  animatedSection.forEach(sectionEle => {
+      const animationMethod = sectionEle.dataset.sdaMethod;
+      switch(animationMethod) {
+         case "hero-banner":
+           const heroSlide = sectionEle.querySelector('.hero-banner');
+           const heroSlideInner = sectionEle.querySelector('.hero-banner-inner');
+           const heroBannerBrandName = sectionEle.querySelector('.banner-brand-name');
+           const heroBannerTimeline = gsap.timeline({
+              scrollTrigger: {
+                trigger: sectionEle,
+                start: 'top top',
+                end:'150%',
+                scrub:true,
+                marker:true,
+              },            
+            });
+      			heroBannerTimeline.to(heroSlide,{
+            	opacity:0,
+              scale:0.5,
+              transformPerspective: 1200,
+              willChange: "transform",
+            })
+            .to(heroSlideInner,{
+              y: -36.2942,
+              rotateX: -13.3715,
+              opacity: 1,
+              transformPerspective: 1200,
+              willChange: "transform",
+              ease: "none"
+            },"<")
+            .to(heroBannerBrandName,{
+            	y: -300,
+              opacity: 1,
+            },"<")
+         break;
+				 default:
+         console.log('no animated section found');
       }
-    });
-   });
-}
+  });
 });
