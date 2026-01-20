@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		    const heroSlide = sectionEle.querySelector('.hero-banner');
 		    const heroSlideInner = sectionEle.querySelector('.hero-banner-inner');
 		    const heroBannerBrandName = sectionEle.querySelector('.banner-brand-name');
+			console.log(`section-Height ${sectionHeight}`);
 			gsap.set([heroSlide, heroSlideInner], {
 			  transformStyle: "preserve-3d",
 			  backfaceVisibility: "hidden"
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			  scrollTrigger: {
 				trigger: sectionEle,
 				start: "top top",
-				end: () => `+=${sectionHeight}`,
+				end: () => `+=${sectionHeight/2}`,
 				scrub: true,
 				markers: true
 			  }
