@@ -10,36 +10,55 @@ document.addEventListener("DOMContentLoaded", () => {
       const animationMethod = sectionEle.dataset.sdaMethod;
       switch(animationMethod) {
          case "hero-banner":
-           const heroSlide = sectionEle.querySelector('.hero-banner');
-           const heroSlideInner = sectionEle.querySelector('.hero-banner-inner');
-           const heroBannerBrandName = sectionEle.querySelector('.banner-brand-name');
-           const heroBannerTimeline = gsap.timeline({
-              scrollTrigger: {
-                trigger: sectionEle,
-                start: 'top top',
-                end:'150%',
-                scrub:true,
-                marker:true,
-              },            
-            });
-      			heroBannerTimeline.to(heroSlide,{
-            	opacity:0,
-              scale:0.5,
-              transformPerspective: 1200,
-              willChange: "transform",
-            })
-            .to(heroSlideInner,{
-              y: -36.2942,
-              rotateX: -13.3715,
-              opacity: 1,
-              transformPerspective: 1200,
-              willChange: "transform",
-              ease: "none"
-            },"<")
-            .to(heroBannerBrandName,{
-            	y: -300,
-              opacity: 1,
-            },"<")
+			const sectionHeight = sectionEle.offsetHeight;
+		    const heroSlide = sectionEle.querySelector('.hero-banner');
+		    const heroSlideInner = sectionEle.querySelector('.hero-banner-inner');
+		    const heroBannerBrandName = sectionEle.querySelector('.banner-brand-name');
+			gsap.set([heroSlide, heroSlideInner], {
+			  transformStyle: "preserve-3d",
+			  backfaceVisibility: "hidden"
+			});
+			const slideFadeScale = {
+			  scale: 0.5,
+			  opacity: 0
+			};
+			const innerMotion = {
+			  y: -sectionHeight * 0.06,
+			  rotateX: -15,
+			  perspective: sectionHeight * 1.2
+			};
+			const brandMotion = {
+			  y: -sectionHeight * 0.5
+			};
+			const heroBannerTimeline = gsap.timeline({
+			  scrollTrigger: {
+				trigger: sectionEle,
+				start: "top top",
+				end: () => `+=${sectionHeight * 1.5}`,
+				scrub: true,
+				markers: true
+			  }
+			});
+			heroBannerTimeline
+			  .to(heroSlide, {
+				opacity: slideFadeScale.opacity,
+				scale: slideFadeScale.scale,
+				transformPerspective: innerMotion.perspective,
+				willChange: "transform"
+			  })
+			  .to(heroSlideInner, {
+				y: innerMotion.y,
+				rotateX: innerMotion.rotateX,
+				opacity: 1,
+				transformPerspective: innerMotion.perspective,
+				ease: "none",
+				willChange: "transform"
+			  }, "<")
+			  .to(heroBannerBrandName, {
+				y: brandMotion.y,
+				opacity: 1,
+				ease: "none"
+			  }, "<");
          break;
 				 default:
          console.log('no animated section found');
