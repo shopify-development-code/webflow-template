@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			  scrollTrigger: {
 				trigger: sectionEle,
 				start: "top top",
-				end: () => `+=${sectionHeight/2}`,
+				end: () => `+=${sectionHeight}`,
 				scrub: true,
 				markers: true
 			  }
