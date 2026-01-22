@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     smooth: 1.2,
     effects: true
   });
+  initCustomCursor();
   const animatedSection = document.querySelectorAll('[data-sda="true"]');
   animatedSection.forEach(sectionEle => {
       const animationMethod = sectionEle.dataset.sdaMethod;
@@ -66,3 +67,65 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
 });
+function initCustomCursor() {
+  const cursor = document.querySelector('.cursor');
+  if (!cursor) return;
+
+  const body = document.body;
+
+  // =========================
+  // Mouse follow
+  // =========================
+  function cursorMove(e) {
+    cursor.style.top = e.clientY + 'px';
+    cursor.style.left = e.clientX + 'px';
+  }
+
+  window.addEventListener('mousemove', cursorMove);
+
+  // =========================
+  // Link hover (center snap)
+  // =========================
+  document.querySelectorAll('a').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      window.removeEventListener('mousemove', cursorMove);
+
+      const rect = link.getBoundingClientRect();
+      cursor.style.left = rect.left + rect.width / 2 + 'px';
+      cursor.style.top = rect.top + rect.height / 2 + 'px';
+
+      cursor.classList.add('cursor-hover');
+    });
+
+    link.addEventListener('mouseleave', () => {
+      window.addEventListener('mousemove', cursorMove);
+      cursor.classList.remove('cursor-hover');
+    });
+  });
+
+  // =========================
+  // Helper for hover classes
+  // =========================
+  function bindHover(selector, className) {
+    document.querySelectorAll(selector).forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add(className));
+      el.addEventListener('mouseleave', () => cursor.classList.remove(className));
+    });
+  }
+
+  bindHover('.logo', 'logo-hover');
+  bindHover('.video', 'video-hover');
+  bindHover('.nav_link', 'link-hover');
+
+  // =========================
+  // Mouse press
+  // =========================
+  body.addEventListener('mousedown', () => {
+    cursor.classList.add('cursor-pressed');
+  });
+
+  body.addEventListener('mouseup', () => {
+    cursor.classList.remove('cursor-pressed');
+  });
+}
+
