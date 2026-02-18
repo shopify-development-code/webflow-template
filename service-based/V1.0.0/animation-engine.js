@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.fonts.ready.then(() => {
   ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
@@ -202,10 +203,45 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
           });
-          
         break;
-				default:
+        case "about-text-reveal":
+			const splitTextIntiate = SplitText.create(".about-reveal-text", {
+			  type: "lines",
+			  linesClass: "line-text"
+			});
+			splitTextIntiate.lines.forEach(line => {
+			  const wrapper = document.createElement("div");
+			  wrapper.classList.add("line-mask");
+			  line.parentNode.insertBefore(wrapper, line);
+			  wrapper.appendChild(line);
+			});
+			gsap.set(splitTextIntiate.lines, {
+			  rotationX: -60,
+			  yPercent: 5,
+			  opacity: 0,
+			  transformOrigin: "top center"
+			});
+			const aboutTextRevealTimeline = gsap.timeline({
+			  scrollTrigger: {
+			    trigger: ".about-reveal-text",
+			    start: "top 90%",
+			    end: () => "+=" + (splitTextIntiate.lines.length * 200),
+			    scrub: true
+			  }
+			});
+			splitTextIntiate.lines.forEach((line) => {
+			  aboutTextRevealTimeline.to(line, {
+			  rotationX: 0,
+			  yPercent: 0,
+			  opacity: 1,
+			  duration: 1,
+			  ease: "none"
+			  });
+			});
+          break;
+		default:
         console.log('no animated section found');
       }
   });
+ });
 });
