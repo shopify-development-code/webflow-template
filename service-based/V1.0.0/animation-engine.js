@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			const y = ((event.clientY - rect.top) / rect.height) - 0.5;
 			gsap.to(wrapper, {
 			  duration: 0.6,
-			  rotationY: 25 * x,
-			  rotationX: -25 * y,
+			  rotationY: 35 * x,
+			  rotationX: -35 * y,
 			  ease: "power1.out",
 			  transformPerspective: 1200,
 			  transformOrigin: "center",
