@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
          const projectItemCenterContent = sectionEle.querySelectorAll('[project-center-item-content]');
          const projectItemLeftContent = sectionEle.querySelectorAll('[project-left-content]');
          const projectItemRightContentMain = sectionEle.querySelectorAll('[project-right-content]'); 
-         
+         const wrapper = sectionEle.querySelector('[project-center-image-holder]');
          const projectItemCenterContentMain = sectionEle.querySelector('.center-content-numeric');
          const projectItemLeftContentMain = sectionEle.querySelector('.content-header-inner'); 
          gsap.set(counterWrapper,{y:150});
@@ -203,6 +203,31 @@ document.addEventListener("DOMContentLoaded", () => {
               }
             }
           });
+		if (sectionEle && wrapper) {
+		  sectionEle.addEventListener('mousemove', function (event) {
+			const rect = sectionEle.getBoundingClientRect();
+			const x = ((event.clientX - rect.left) / rect.width) - 0.5;
+			const y = ((event.clientY - rect.top) / rect.height) - 0.5;
+			gsap.to(wrapper, {
+			  duration: 0.6,
+			  rotationY: 25 * x,
+			  rotationX: -25 * y,
+			  ease: "power1.out",
+			  transformPerspective: 1200,
+			  transformOrigin: "center",
+			  z: -30
+			});
+		
+		  });
+		  sectionEle.addEventListener('mouseleave', function () {
+			gsap.to(wrapper, {
+			  duration: 0.8,
+			  rotationX: 0,
+			  rotationY: 0,
+			  ease: "power3.out"
+			});
+		  });
+		}
         break;
         case "about-text-reveal":
 			const splitTextIntiate = SplitText.create(".about-reveal-text", {
