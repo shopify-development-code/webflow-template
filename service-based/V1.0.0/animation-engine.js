@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
           break;
 		  case "faq-accordian":
-			const blocks = sectionEle.querySelectorAll('[faq-block-item]);
+			const blocks = sectionEle.querySelectorAll('[faq-block-item]');
 			gsap.set(blocks, { xPercent: 100, opacity: 1 });
 			gsap.to(blocks[0], {
 			  xPercent: 0,
