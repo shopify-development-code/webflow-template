@@ -264,6 +264,35 @@ document.addEventListener("DOMContentLoaded", () => {
 			  });
 			});
           break;
+		  case "faq-accordian":
+			const blocks = sectionEle.querySelectorAll('[faq-block-item]);
+			gsap.set(blocks, { xPercent: 100, opacity: 1 });
+			gsap.to(blocks[0], {
+			  xPercent: 0,
+			  opacity: 1,
+			  ease: "power3.out",
+			  scrollTrigger: {
+			    trigger: blocks[0],
+			    start: "top 70%",
+			    end: "center 50%",
+			    scrub: true
+			  }
+			});
+			blocks.forEach((block, i) => {
+			  if (i === 0) return;
+			  gsap.to(block, {
+			    xPercent: 0,
+			    opacity: 1,
+			    ease: "power3.out",
+			    scrollTrigger: {
+			      trigger: blocks[i - 1],
+			      start: "center 60%",
+			      end: "center 40%",
+			      scrub: true
+			    }
+			  });
+			});
+	      break;
 		default:
         console.log('no animated section found');
       }
