@@ -293,6 +293,18 @@ document.addEventListener("DOMContentLoaded", () => {
 			  });
 			});
 	      break;
+		  case "marquee-text":
+			  const marquees = document.querySelectorAll("[marquee-items-scroll]");
+			  marquees.forEach((marquee) => {
+			    const originalContent = marquee.innerHTML;
+			    let contentWidth = marquee.scrollWidth;
+			    const viewportWidth = window.innerWidth;
+			    while (contentWidth < viewportWidth * 2) {
+			      marquee.innerHTML += originalContent;
+			      contentWidth = marquee.scrollWidth;
+			    }
+			  });
+		  break;
 		default:
         console.log('no animated section found');
       }
