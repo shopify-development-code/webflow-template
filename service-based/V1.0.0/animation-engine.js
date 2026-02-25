@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 	      break;
 		  case "marquee-text":
-			  const marquees = document.querySelectorAll("[marquee-items-scroll]");
+			  const marquees = sectionEle.querySelectorAll("[marquee-items-scroll]");
 			  marquees.forEach((marquee) => {
 			    const originalContent = marquee.innerHTML;
 			    let contentWidth = marquee.scrollWidth;
@@ -303,6 +303,14 @@ document.addEventListener("DOMContentLoaded", () => {
 			      marquee.innerHTML += originalContent;
 			      contentWidth = marquee.scrollWidth;
 			    }
+				const marqueeDirection = marquee.dataset.marqueeItemsScroll;
+				  if (marqueeDirection !== undefined) {
+					if(marqueeDirection == 'right-to-left'){
+						marquee.classList.add('scroll');
+					}else if(marqueeDirection == 'left-to-right'){
+						marquee.classList.add('scroll', 'reverse');
+					}  
+				  }
 			  });
 		  break;
 		default:
