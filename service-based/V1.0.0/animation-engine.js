@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			      marquee.innerHTML += originalContent;
 			      contentWidth = marquee.scrollWidth;
 			    }
-				const marqueeDirection = marquee.dataset.marqueeItemsScroll;
+				  const marqueeDirection = marquee.getAttribute("marquee-items-scroll");
 				  if (marqueeDirection !== undefined) {
 					if(marqueeDirection == 'right-to-left'){
 						marquee.classList.add('scroll');
