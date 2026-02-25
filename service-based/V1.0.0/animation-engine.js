@@ -126,11 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
               })
               .to(card, {
                 yPercent: 0,
-                scale:0.9,
+                scale:1,
                 z: 0,
                 rotateX: 0,       
                 ease: "none",
-				width: "85%",
+				//width: "85%",
 				height:"85%",
                 onUpdate: function () {
                   const progress = this.progress();
