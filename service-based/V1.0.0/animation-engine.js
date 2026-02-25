@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			  scrollTrigger: {
 				trigger: sectionEle,
 				start: "top top",
-				end: () => `+=${sectionHeight+150}`,
+				end: () => `+=${sectionHeight}`,
 				scrub: true
 			  }
 			});
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
               })
               .to(card, {
                 yPercent: 0,
-                scale:0.92,
+                scale:0.82,
                 z: 0,
                 rotateX: 0,       
                 ease: "none",
