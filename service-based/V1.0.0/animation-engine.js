@@ -126,10 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
               })
               .to(card, {
                 yPercent: 0,
-                scale:0.82,
+                scale:0.9,
                 z: 0,
                 rotateX: 0,       
                 ease: "none",
+				width: "85%",
+				height:"85%",
                 onUpdate: function () {
                   const progress = this.progress();
                   if (progress >= 0.5 && !currentBg.classList.contains("active")) {
