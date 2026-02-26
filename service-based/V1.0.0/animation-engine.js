@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         case "project-counter":
          const counterContentMain = sectionEle.querySelector('[project-center-numeric-counter]');
          const counterWrapper = sectionEle.querySelector('[project-countdown-wrapper]');
+		 const counterWrapperImage = sectionEle.querySelector('[project-countdown-image-wrapper]');
          const projectsItemImages = sectionEle.querySelectorAll('[project-center-item-image]');
          const projectItemCenterContent = sectionEle.querySelectorAll('[project-center-item-content]');
          const projectItemLeftContent = sectionEle.querySelectorAll('[project-left-content]');
@@ -209,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const rect = sectionEle.getBoundingClientRect();
 			const x = ((event.clientX - rect.left) / rect.width) - 0.5;
 			const y = ((event.clientY - rect.top) / rect.height) - 0.5;
-			gsap.to([wrapper,counterWrapper], {
+			gsap.to([wrapper,counterWrapperImage], {
 			  duration: 0.6,
 			  rotationY: 35 * x,
 			  rotationX: -35 * y,
@@ -221,7 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 		  });
 		  sectionEle.addEventListener('mouseleave', function () {
-			gsap.to([wrapper,counterWrapper], {
+			gsap.to([wrapper,counterWrapperImage], {
 			  duration: 0.8,
 			  rotationX: 0,
 			  rotationY: 0,
