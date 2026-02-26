@@ -147,15 +147,14 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         break;
         case "project-counter":
-         const counterContentMain = sectionEle.querySelector('.center-numeric-counter');
-         const counterWrapper = sectionEle.querySelector('.countdown-wrapper');
+         const counterContentMain = sectionEle.querySelector('[project-center-numeric-counter]');
+         const counterWrapper = sectionEle.querySelector('[project-countdown-wrapper]');
          const projectsItemImages = sectionEle.querySelectorAll('[project-center-item-image]');
          const projectItemCenterContent = sectionEle.querySelectorAll('[project-center-item-content]');
          const projectItemLeftContent = sectionEle.querySelectorAll('[project-left-content]');
          const projectItemRightContentMain = sectionEle.querySelectorAll('[project-right-content]'); 
          const wrapper = sectionEle.querySelector('[project-center-image-holder]');
-         const projectItemCenterContentMain = sectionEle.querySelector('.center-content-numeric');
-         const projectItemLeftContentMain = sectionEle.querySelector('.content-header-inner'); 
+         const projectItemCenterContentMain = sectionEle.querySelector('[project-content-numeric]');
          gsap.set(counterWrapper,{y:150});
          gsap.set(counterContentMain,{paddingBottom:150});
          gsap.set(counterContentMain,{y:150});
