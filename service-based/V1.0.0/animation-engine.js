@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			const rect = sectionEle.getBoundingClientRect();
 			const x = ((event.clientX - rect.left) / rect.width) - 0.5;
 			const y = ((event.clientY - rect.top) / rect.height) - 0.5;
-			gsap.to(wrapper, {
+			gsap.to([wrapper,counterWrapper], {
 			  duration: 0.6,
 			  rotationY: 35 * x,
 			  rotationX: -35 * y,
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 		  });
 		  sectionEle.addEventListener('mouseleave', function () {
-			gsap.to(wrapper, {
+			gsap.to([wrapper,counterWrapper], {
 			  duration: 0.8,
 			  rotationX: 0,
 			  rotationY: 0,
