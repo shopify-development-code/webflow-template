@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.fonts.ready.then(() => {
+  //document.fonts.ready.then(() => {
   ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
@@ -319,5 +319,5 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log('no animated section found');
       }
   });
- });
+ //});
 });
