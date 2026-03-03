@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
               }, "<")
           });
         break;
-        case "project-counter":
+        case "project-counter-bkp":
          const counterContentMain = sectionEle.querySelector('[project-center-numeric-counter]');
          const counterWrapper = sectionEle.querySelector('[project-countdown-wrapper]');
 		 const counterWrapperImage = sectionEle.querySelector('[project-countdown-image-wrapper]');
