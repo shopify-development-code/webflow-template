@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (serviceTextDetail[index]) {
                gsap.to(serviceTextDetail[index], {
                 opacity: 1,
-                xPercent: 100,
+                xPercent: 60,
                 duration: 0.6,
                 ease: "power3.out"
               });
