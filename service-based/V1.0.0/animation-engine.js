@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
             serviceTextDetail.forEach(detail => {
               gsap.to(detail, {
                 opacity: 0,
-                xPercent: 0,   // initial position
+                xPercent: 0,
                 duration: 0.4,
                 ease: "power2.out"
               });
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (serviceTextDetail[index]) {
                gsap.to(serviceTextDetail[index], {
                 opacity: 1,
-                xPercent: 60,
+                xPercent: 50,
                 duration: 0.6,
                 ease: "power3.out"
               });
