@@ -315,6 +315,44 @@ document.addEventListener("DOMContentLoaded", () => {
 				  }
 			  });
 		  break;
+        case "service-reveal-category":
+        const serviceImagesCard = sectionEle.querySelectorAll('[reveal-service-image]');
+        const serviceTextCard = sectionEle.querySelectorAll('[reveal-service-text]');
+        const serviceTextDetail = sectionEle.querySelectorAll('[reveal-detail-link]');
+        gsap.set(serviceTextDetail,{opacity:0,xPercent:0});
+        serviceTextCard.forEach((textCard, index) => {
+          textCard.addEventListener("mouseenter", () => {
+          	gsap.killTweensOf(serviceTextDetail);
+            serviceImagesCard.forEach(img => img.classList.remove("active"));
+            serviceTextCard.forEach(txt => txt.classList.remove("active"));
+            gsap.to(serviceTextDetail, {
+              opacity: 0,
+              xPercent: 0,
+              duration: 0.3
+            });
+            serviceTextDetail.forEach(detail => {
+              gsap.to(detail, {
+                opacity: 0,
+                xPercent: 0,   // initial position
+                duration: 0.4,
+                ease: "power2.out"
+              });
+            });
+            if (serviceImagesCard[index]) {
+              serviceImagesCard[index].classList.add("active");
+            }
+            if (serviceTextDetail[index]) {
+               gsap.to(serviceTextDetail[index], {
+                opacity: 1,
+                xPercent: 100,
+                duration: 0.6,
+                ease: "power3.out"
+              });
+            }
+            textCard.classList.add("active");
+          });
+        });
+        break;
 		default:
         console.log('no animated section found');
       }
